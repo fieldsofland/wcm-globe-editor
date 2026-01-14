@@ -123,43 +123,35 @@ interface Preset {
 
 const PRESETS: Preset[] = [
     {
-        name: 'WCM Default',
+        name: 'WCM Black®',
         settings: {
-            bgColor: '#111111',
-            overrideColorEnabled: false,
-            zColor: '#ff3333',
-            yColor: '#33ff33',
-            xColor: '#3333ff',
-            globalSpeed: 0.5,
-        }
-    },
-    {
-        name: 'Monochrome',
-        settings: {
-            bgColor: '#000000',
+            bgColor: '#040310',
             overrideColorEnabled: true,
-            overrideColor: '#ffffff',
-            globalSpeed: 0.3,
+            overrideColor: '#FFFBF5',
         }
     },
     {
-        name: 'Gold Accent',
+        name: 'WCM White®',
         settings: {
-            bgColor: '#0a0a0f',
+            bgColor: '#FFFBF5',
             overrideColorEnabled: true,
-            overrideColor: '#d4af37',
-            globalSpeed: 0.4,
+            overrideColor: '#07185C',
         }
     },
     {
-        name: 'Neon Cyber',
+        name: 'WCM Navy®',
         settings: {
-            bgColor: '#050510',
-            overrideColorEnabled: false,
-            zColor: '#ff00ff',
-            yColor: '#00ffff',
-            xColor: '#ffff00',
-            globalSpeed: 0.6,
+            bgColor: '#07185C',
+            overrideColorEnabled: true,
+            overrideColor: '#FFFBF5',
+        }
+    },
+    {
+        name: 'WCM Blue®',
+        settings: {
+            bgColor: '#153098',
+            overrideColorEnabled: true,
+            overrideColor: '#FFFBF5',
         }
     },
 ];
@@ -208,16 +200,16 @@ interface EditorSettings {
 }
 
 const DEFAULT_SETTINGS: EditorSettings = {
-    scale: 1,
-    strokeWidth: 3,
+    scale: 2,
+    strokeWidth: 2,
     cornerRadius: 0.2,
     globalSpeed: 0.5,
     globalSpinX: 0.0,
     globalSpinY: 1.0,
     globalSpinZ: 1.0,
     overrideColorEnabled: true,
-    overrideColor: '#ffffff',
-    bgColor: '#111111',
+    overrideColor: '#FFFBF5',
+    bgColor: '#040310',
 
     zColor: '#ff3333',
     zOffsetX: 0,
@@ -347,7 +339,9 @@ const Section = ({ title, defaultOpen = true, children }: SectionProps) => {
                 <h3>{title}</h3>
                 <ChevronIcon open={isOpen} />
             </div>
-            {isOpen && <div className="section-content">{children}</div>}
+            <div className={`section-content-wrapper ${isOpen ? 'open' : ''}`}>
+                <div className="section-content">{children}</div>
+            </div>
         </div>
     );
 };
@@ -503,14 +497,14 @@ const BezierCurveEditor = ({ values, onChange }: BezierCurveEditorProps) => {
                     className="bezier-handle"
                     cx={p1.x}
                     cy={p1.y}
-                    r={6}
+                    r={4}
                     onMouseDown={(e) => handleMouseDown(e, 1)}
                 />
                 <circle
                     className="bezier-handle"
                     cx={p2.x}
                     cy={p2.y}
-                    r={6}
+                    r={4}
                     onMouseDown={(e) => handleMouseDown(e, 2)}
                 />
             </svg>
@@ -546,10 +540,10 @@ function App() {
     const [frameCount, setFrameCount] = useState(60);
 
     // Carousel animation settings
-    const [carouselDuration, setCarouselDuration] = useState(1.0); // seconds per 60° step
-    const [carouselPause, setCarouselPause] = useState(0.5); // pause between steps
-    const [carouselEasing, setCarouselEasing] = useState('ease-in-out'); // preset or custom
-    const [customBezier, setCustomBezier] = useState<[number, number, number, number]>([0.42, 0, 0.58, 1]); // cubic-bezier values
+    const [carouselDuration, setCarouselDuration] = useState(3.0); // seconds per 60° step
+    const [carouselPause, setCarouselPause] = useState(0); // pause between steps
+    const [carouselEasing, setCarouselEasing] = useState('custom'); // preset or custom
+    const [customBezier, setCustomBezier] = useState<[number, number, number, number]>([0.8, 0, 0.2, 1]); // cubic-bezier values
     const [carouselDirection, setCarouselDirection] = useState<'left' | 'right'>('right'); // rotation direction
 
     const updateSetting = <K extends keyof EditorSettings>(key: K, value: EditorSettings[K]) => {
@@ -654,8 +648,11 @@ function App() {
             {/* EDITOR PANEL */}
             <div className="editor-panel">
                 <div className="editor-header">
-                    <h1>WCM Globe Editor</h1>
-                    <p>Create and export custom globe animations</p>
+                    <img
+                        src="/src/World_Lockup_Horizontal_World_®_White.svg"
+                        alt="World"
+                        className="header-logo"
+                    />
                 </div>
 
                 <div className="editor-content">
@@ -665,7 +662,7 @@ function App() {
                             className={`mode-btn ${animationMode === 'classic' ? 'active' : ''}`}
                             onClick={() => setAnimationMode('classic')}
                         >
-                            Classic
+                            Gyro
                         </button>
                         <button
                             className={`mode-btn ${animationMode === 'carousel' ? 'active' : ''}`}
@@ -726,43 +723,6 @@ function App() {
                                 onChange={(v) => updateSetting('globalSpeed', v)}
                             />
                         )}
-                    </Section>
-
-                    {/* GLOBAL SPIN */}
-                    <Section title="Global Rotation" defaultOpen={false}>
-                        <SliderControl
-                            label="Spin X"
-                            value={settings.globalSpinX}
-                            min={-2}
-                            max={2}
-                            step={0.1}
-                            onChange={(v) => updateSetting('globalSpinX', v)}
-                        />
-                        <SliderControl
-                            label="Spin Y"
-                            value={settings.globalSpinY}
-                            min={-2}
-                            max={2}
-                            step={0.1}
-                            onChange={(v) => updateSetting('globalSpinY', v)}
-                        />
-                        <SliderControl
-                            label="Spin Z"
-                            value={settings.globalSpinZ}
-                            min={-2}
-                            max={2}
-                            step={0.1}
-                            onChange={(v) => updateSetting('globalSpinZ', v)}
-                        />
-                    </Section>
-
-                    {/* COLORS */}
-                    <Section title="Colors">
-                        <ColorControl
-                            label="Background"
-                            value={settings.bgColor}
-                            onChange={(v) => updateSetting('bgColor', v)}
-                        />
                         <ToggleControl
                             label="Single Color"
                             value={settings.overrideColorEnabled}
@@ -775,7 +735,42 @@ function App() {
                                 onChange={(v) => updateSetting('overrideColor', v)}
                             />
                         )}
+                        <ColorControl
+                            label="Background"
+                            value={settings.bgColor}
+                            onChange={(v) => updateSetting('bgColor', v)}
+                        />
                     </Section>
+
+                    {/* GLOBAL SPIN - Only show in classic mode */}
+                    {animationMode === 'classic' && (
+                        <Section title="Global Rotation" defaultOpen={false}>
+                            <SliderControl
+                                label="Spin X"
+                                value={settings.globalSpinX}
+                                min={-2}
+                                max={2}
+                                step={0.1}
+                                onChange={(v) => updateSetting('globalSpinX', v)}
+                            />
+                            <SliderControl
+                                label="Spin Y"
+                                value={settings.globalSpinY}
+                                min={-2}
+                                max={2}
+                                step={0.1}
+                                onChange={(v) => updateSetting('globalSpinY', v)}
+                            />
+                            <SliderControl
+                                label="Spin Z"
+                                value={settings.globalSpinZ}
+                                min={-2}
+                                max={2}
+                                step={0.1}
+                                onChange={(v) => updateSetting('globalSpinZ', v)}
+                            />
+                        </Section>
+                    )}
 
                     {/* RING CONTROLS - Only show in classic mode */}
                     {animationMode === 'classic' && (
@@ -974,15 +969,15 @@ function App() {
                     {animationMode === 'carousel' && (
                         <Section title="Carousel Animation">
                             <SliderControl
-                                label="Animation Speed (s)"
+                                label="Animation Speed"
                                 value={carouselDuration}
                                 min={0.2}
-                                max={3.0}
+                                max={15.0}
                                 step={0.1}
                                 onChange={(v) => setCarouselDuration(v)}
                             />
                             <SliderControl
-                                label="Pause Duration (s)"
+                                label="Pause Duration"
                                 value={carouselPause}
                                 min={0}
                                 max={2.0}
@@ -1065,8 +1060,8 @@ function App() {
                                             onChange={(e) => setCustomBezier([customBezier[0], customBezier[1], customBezier[2], parseFloat(e.target.value) || 0])}
                                         />
                                     </div>
-                                    <small style={{ color: 'var(--text-muted)', fontSize: '10px', marginTop: '4px', display: 'block', textAlign: 'center' }}>
-                                        Drag the handles or edit values (x1, y1, x2, y2)
+                                    <small className="bezier-help-text">
+                                        Drag handles or edit values (x1, y1, x2, y2)
                                     </small>
                                 </div>
                             )}

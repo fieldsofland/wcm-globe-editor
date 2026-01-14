@@ -1,26 +1,49 @@
 :root {
-    /* ShadCN-inspired dark theme */
-    --bg-dark: #09090b;
-    --bg-panel: #0c0c0e;
-    --bg-card: #18181b;
-    --bg-input: #27272a;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --border-subtle: rgba(255, 255, 255, 0.06);
-    --border-bright: rgba(255, 255, 255, 0.12);
-    --text-primary: #fafafa;
-    --text-secondary: #a1a1aa;
-    --text-muted: #71717a;
-    --accent-primary: #8b5cf6;
-    --accent-hover: #a78bfa;
-    --accent-glow: rgba(139, 92, 246, 0.15);
+    /* WCM Brand Color Palette - Dark Theme */
+    /* Neutrals - shifted darker */
+    --bg-dark: #040310;
+    /* Neutral/950 - main background */
+    --bg-panel: #040310;
+    /* Neutral/950 - side panel (same as main) */
+    --bg-card: #11101B;
+    /* Neutral/900 - cards/sections */
+    --bg-input: #1D1C26;
+    /* Neutral/850 - inputs */
+    --border-color: #312F39;
+    /* Neutral/800 */
+    --border-subtle: #1D1C26;
+    /* Neutral/850 */
+    --border-bright: #434149;
+    /* Neutral/700 */
+
+    /* Text - using lighter neutrals */
+    --text-primary: #F8F4EF;
+    /* Neutral/100 - slightly warmer */
+    --text-secondary: #817F82;
+    /* Neutral/550 */
+    --text-muted: #68666C;
+    /* Neutral/600 */
+
+    /* Accents - using Blue palette */
+    --accent-primary: #576299;
+    /* Blue/400 */
+    --accent-hover: #727BA9;
+    /* Blue/350 */
+    --accent-glow: rgba(87, 98, 153, 0.25);
+    /* Blue/400 with alpha */
+    --accent-bright: #8E94B8;
+    /* Blue/300 */
+
+    /* Status colors */
     --success: #22c55e;
     --warning: #f59e0b;
     --error: #ef4444;
-    --ring: rgba(139, 92, 246, 0.5);
+    --ring: rgba(87, 98, 153, 0.5);
+    /* Blue/400 with alpha */
 
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Overused Grotesk', system-ui, -apple-system, sans-serif;
     line-height: 1.5;
-    font-weight: 400;
+    font-weight: 380;
     color-scheme: dark;
     color: var(--text-primary);
     background-color: var(--bg-dark);

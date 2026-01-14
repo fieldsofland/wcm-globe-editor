@@ -22,24 +22,14 @@
 .editor-header {
     padding: 20px 24px;
     border-bottom: 1px solid var(--border-subtle);
-    background: linear-gradient(180deg, rgba(99, 102, 241, 0.08) 0%, transparent 100%);
+    display: flex;
+    align-items: center;
 }
 
-.editor-header h1 {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin: 0 0 4px 0;
-    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.editor-header p {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin: 0;
+.header-logo {
+    height: 24px;
+    width: auto;
+    display: block;
 }
 
 .editor-content {
@@ -83,7 +73,7 @@
     color: var(--text-muted);
     font-size: 13px;
     font-weight: 500;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Overused Grotesk', sans-serif;
     cursor: pointer;
     transition: all 0.15s ease;
 }
@@ -144,10 +134,46 @@
     transform: rotate(180deg);
 }
 
+.section-content-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease-out;
+    overflow: hidden;
+}
+
+.section-content-wrapper.open {
+    grid-template-rows: 1fr;
+}
+
 .section-content {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.section-content-wrapper.open .section-content {
     padding: 12px;
     background: var(--bg-dark);
     border-top: 1px solid var(--border-color);
+}
+
+/* ========================================
+   CONTROL GROUPS (Direction, Easing, etc)
+   ======================================== */
+.control-group {
+    margin-bottom: 16px;
+}
+
+.control-group:last-child {
+    margin-bottom: 0;
+}
+
+.control-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-family: 'Overused Grotesk', sans-serif;
 }
 
 /* ========================================
@@ -201,7 +227,7 @@
     border-radius: 6px;
     color: var(--text-primary);
     font-size: 12px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Overused Grotesk', sans-serif;
     text-align: center;
     outline: none;
     transition: border-color 0.2s ease;
@@ -286,7 +312,7 @@
     padding: 9px 16px;
     font-size: 13px;
     font-weight: 500;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Overused Grotesk', sans-serif;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -636,7 +662,7 @@
     border-radius: 6px;
     color: var(--text-primary);
     font-size: 12px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Overused Grotesk', sans-serif;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -659,7 +685,7 @@
     border-radius: 6px;
     color: var(--text-primary);
     font-size: 12px;
-    font-family: 'Inter', monospace;
+    font-family: 'Overused Grotesk', monospace;
 }
 
 .text-input:focus {
@@ -672,9 +698,9 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1;
-    background: var(--bg-input);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
     cursor: crosshair;
     margin-top: 8px;
@@ -686,40 +712,40 @@
 }
 
 .bezier-grid {
-    stroke: var(--border-color);
+    stroke: var(--border-subtle);
     stroke-width: 0.5;
 }
 
 .bezier-diagonal {
     stroke: var(--text-muted);
-    stroke-width: 1;
-    stroke-dasharray: 4 4;
-    opacity: 0.5;
+    stroke-width: 0.5;
+    stroke-dasharray: 3 3;
+    opacity: 0.4;
 }
 
 .bezier-curve {
     fill: none;
     stroke: var(--accent-primary);
-    stroke-width: 2;
+    stroke-width: 1.5;
     stroke-linecap: round;
 }
 
 .bezier-handle-line {
     stroke: var(--text-muted);
-    stroke-width: 1;
-    opacity: 0.6;
+    stroke-width: 0.5;
+    opacity: 0.5;
 }
 
 .bezier-handle {
     fill: var(--accent-primary);
     stroke: white;
-    stroke-width: 2;
+    stroke-width: 1.5;
     cursor: grab;
     transition: r 0.15s ease;
 }
 
 .bezier-handle:hover {
-    r: 8;
+    r: 6;
 }
 
 .bezier-handle:active {
@@ -729,30 +755,38 @@
 .bezier-endpoint {
     fill: var(--text-secondary);
     stroke: var(--border-color);
-    stroke-width: 1;
+    stroke-width: 0.5;
 }
 
 .bezier-values {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     margin-top: 8px;
 }
 
 .bezier-value-input {
     flex: 1;
-    padding: 6px 8px;
-    background: var(--bg-input);
+    padding: 6px 4px;
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     color: var(--text-primary);
-    font-size: 11px;
-    font-family: 'Inter', monospace;
+    font-size: 10px;
+    font-family: 'Overused Grotesk', monospace;
     text-align: center;
 }
 
 .bezier-value-input:focus {
     outline: none;
     border-color: var(--accent-primary);
+}
+
+.bezier-help-text {
+    display: block;
+    color: var(--text-muted);
+    font-size: 10px;
+    margin-top: 6px;
+    text-align: center;
 }
 
 /* ========================================
@@ -790,7 +824,7 @@
     color: white;
     font-size: 13px;
     font-weight: 500;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Overused Grotesk', sans-serif;
     text-decoration: none;
     border-radius: 6px;
     transition: all 0.15s ease;
