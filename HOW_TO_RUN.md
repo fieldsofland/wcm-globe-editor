@@ -13,13 +13,12 @@ This guide is written for someone with no prior experience using the Terminal. F
 ### Step 2: Go to the Project Folder
 We need to tell the Terminal where the project files are located.
 
-1. Copy the command below (highlight the text and press **Command + C**):
+1. In Terminal, navigate to the folder where you downloaded/cloned this project:
    ```bash
-   cd "/Users/matt/AntiGravity/WCM Website Test/WCM Globe Editor"
+   cd path/to/wcm-globe-editor
    ```
-2. Click inside the Terminal window to make sure it's active.
-3. Paste the command (press **Command + V**).
-4. Press the **Return** key.
+   (Replace `path/to/wcm-globe-editor` with the actual folder location)
+2. Press the **Return** key.
 
 ### Step 3: Install Requirements (First Time Only)
 *If you have already run this project before, you can skip this step and go to Step 4.*
@@ -92,7 +91,7 @@ When you are finished using the editor:
 ## TL;DR for Developers
 **Commands:**
 ```bash
-cd "/Users/matt/AntiGravity/WCM Website Test/WCM Globe Editor"
+cd path/to/wcm-globe-editor
 npm install    # First time only
 npm run dev
 ```

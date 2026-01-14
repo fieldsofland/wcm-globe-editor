@@ -21,7 +21,6 @@ A visual editor and SVG creator for the WCM Globe Animation. This tool allows yo
 ## Quick Start
 
 ```bash
-cd "/Users/matt/AntiGravity/WCM Website Test/WCM Globe Editor"
 npm install    # First time only
 npm run dev
 ```
