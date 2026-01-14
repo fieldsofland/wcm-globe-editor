@@ -68,7 +68,8 @@
     display: flex;
     gap: 1px;
     padding: 2px;
-    background: var(--border-color);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     margin-bottom: 16px;
 }
@@ -76,7 +77,7 @@
 .mode-btn {
     flex: 1;
     padding: 8px 14px;
-    background: var(--bg-card);
+    background: transparent;
     border: none;
     border-radius: 6px;
     color: var(--text-muted);
@@ -87,14 +88,13 @@
     transition: all 0.15s ease;
 }
 
-.mode-btn:hover {
-    color: var(--text-primary);
+.mode-btn:hover:not(.active) {
+    color: var(--text-secondary);
 }
 
 .mode-btn.active {
-    background: var(--bg-input);
-    color: var(--text-primary);
-    box-shadow: none;
+    background: var(--accent-primary);
+    color: white;
 }
 
 /* ========================================
