@@ -101,24 +101,27 @@
    SECTIONS & GROUPS (ShadCN-style)
    ======================================== */
 .section {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 10px;
-    background: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    padding: 10px 12px;
+    background: var(--bg-card);
+    border: none;
+    border-radius: 0;
     cursor: pointer;
     transition: all 0.15s ease;
-    margin-bottom: 8px;
+    margin-bottom: 0;
 }
 
 .section-header:hover {
-    background: var(--bg-card);
+    background: var(--bg-input);
 }
 
 .section-header h3 {
@@ -142,7 +145,9 @@
 }
 
 .section-content {
-    padding: 0 2px;
+    padding: 12px;
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border-color);
 }
 
 /* ========================================
