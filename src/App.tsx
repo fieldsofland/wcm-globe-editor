@@ -649,7 +649,7 @@ function App() {
             <div className="editor-panel">
                 <div className="editor-header">
                     <img
-                        src="/src/World_Lockup_Horizontal_World_®_White.svg"
+                        src="/world-logo.svg"
                         alt="World"
                         className="header-logo"
                     />
